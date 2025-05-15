@@ -17,17 +17,7 @@
     />
   </head>
   <body>
-    <!-- Barra de navegación -->
-    <nav>
-      <div class="logo">
-        <img src="../assets/logo.png" alt="Logo Trámites Digitales" />
-      </div>
-      <div class="nav-links">
-        <a href="#login">Iniciar Sesión</a>
-        <a href="#register">Registrarse</a>
-      </div>
-    </nav>
-
+    <div id="navbar-container"></div>
     <!-- Sección principal -->
     <section class="hero">
       <h1>Realiza tus trámites públicos en línea</h1>
@@ -58,24 +48,32 @@
     </section>
 
     <!-- Footer -->
-    <footer>
-      <div class="footer-content">
-        <div class="footer-section">
-          <h3>Contacto</h3>
-          <p>contacto@tramitesdigitales.com</p>
-          <p>+54 11 1234-5678</p>
-        </div>
-        <div class="footer-section">
-          <h3>Legal</h3>
-          <a href="#terms">Términos de uso</a>
-          <a href="#privacy">Privacidad</a>
-        </div>
-        <div class="footer-section">
-          <h3>Síguenos</h3>
-          <a href="#facebook"><i class="fab fa-facebook"></i> Facebook</a>
-          <a href="#twitter"><i class="fab fa-twitter"></i> Twitter</a>
-        </div>
-      </div>
-    </footer>
+
+    <script>
+      fetch("navbar.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("navbar-container").innerHTML = data;
+        });
+    </script>
   </body>
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Contacto</h3>
+        <p>contacto@tramitesdigitales.com</p>
+        <p>+54 11 1234-5678</p>
+      </div>
+      <div class="footer-section">
+        <h3>Legal</h3>
+        <a href="#terms">Términos de uso</a>
+        <a href="#privacy">Privacidad</a>
+      </div>
+      <div class="footer-section">
+        <h3>Síguenos</h3>
+        <a href="#facebook"><i class="fab fa-facebook"></i> Facebook</a>
+        <a href="#twitter"><i class="fab fa-twitter"></i> Twitter</a>
+      </div>
+    </div>
+  </footer>
 </html>
