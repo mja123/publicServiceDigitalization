@@ -284,3 +284,75 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+
+/* Estilos específicos para el formulario de poda */
+#solicitudPodaForm {
+    display: grid;
+    gap: 1.5rem;
+}
+
+#solicitudPodaForm select,
+#solicitudPodaForm textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+#solicitudPodaForm textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+}
+
+.input-group input {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.form-text {
+    display: block;
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 0.3rem;
+}
+
+/* Mejoras de responsive */
+@media (max-width: 768px) {
+    .input-group {
+        flex-direction: column;
+    }
+    
+    .input-group input {
+        margin-right: 0;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    
+    .cta-button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Validaciones */
+input:invalid, select:invalid, textarea:invalid {
+    border-color: #dc3545;
+}
+
+input:valid, select:valid, textarea:valid {
+    border-color: #28a745;
+}
+
+.required-label::after {
+    content: "*";
+    color: #dc3545;
+    margin-left: 3px;
+}
