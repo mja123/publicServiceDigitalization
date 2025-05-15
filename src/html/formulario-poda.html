@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de Poda - Municipalidad de Guaymallén</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="navbar-container"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Solicitud de Servicio de Poda</h1>
+        <p>Gestión eficiente de solicitudes ciudadanas para poda de árboles</p>
+    </section>
+
+    <!-- Formulario de solicitud -->
+    <main class="services">
+        <div class="auth-container">
+            <h2><i class="fas fa-tree"></i> Formulario de Solicitud</h2>
+            <form id="solicitudPodaForm" action="/enviar-solicitud" method="POST" enctype="multipart/form-data">
+                
+                <!-- Sección Datos Personales -->
+                <div class="service-card">
+                    <h3><i class="fas fa-user"></i> Datos Personales</h3>
+                    <div class="form-group">
+                        <label class="required-label">Nombre completo</label>
+                        <input type="text" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="required-label">DNI</label>
+                        <input type="text" name="dni" pattern="[0-9]{7,8}" required>
+                        <small class="form-text">Sin puntos ni espacios</small>
+                    </div>
+                </div>
+
+                <!-- Sección Ubicación -->
+                <div class="service-card">
+                    <h3><i class="fas fa-map-marker-alt"></i> Ubicación del Árbol</h3>
+                    <div class="form-group">
+                        <label class="required-label">Dirección exacta</label>
+                        <input type="text" name="direccion" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="required-label">Geolocalización</label>
+                        <div class="input-group">
+                            <input type="text" id="coordenadas" placeholder="Haz clic en el mapa" readonly>
+                            <button type="button" class="cta-button" onclick="obtenerUbicacion()">
+                                <i class="fas fa-map-pin"></i> Ubicar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detalles de la solicitud -->
+                <div class="service-card">
+                    <h3><i class="fas fa-clipboard-list"></i> Detalles de la Solicitud</h3>
+                    <div class="form-group">
+                        <label class="required-label">Motivo principal</label>
+                        <select name="motivo" required>
+                            <option value="">Seleccione...</option>
+                            <option value="riesgo_electrico">Riesgo eléctrico</option>
+                            <option value="obstruccion">Obstrucción de vía pública</option>
+                            <option value="riesgo_personas">Peligro para personas</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required-label">Descripción detallada</label>
+                        <textarea rows="4" required></textarea>
+                    </div>
+                </div>
+
+                <!-- Adjuntos y confirmaciones -->
+                <div class="service-card">
+                    <h3><i class="fas fa-paperclip"></i> Documentación Adjunta</h3>
+                    <div class="form-group">
+                        <label>Fotos del árbol (Máx. 3)</label>
+                        <input type="file" accept="image/*" multiple>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="confirmacion" required>
+                        <label for="confirmacion">Soy residente de Guaymallén</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="cta-button">
+                    <i class="fas fa-paper-plane"></i> Enviar Solicitud
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>Tel: 0261-1234567</p>
+                <p>Email: contacto@guaymallen.gob.ar</p>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <a href="#terms">Términos de uso</a>
+                <a href="#privacy">Privacidad</a>
+            </div>
+            <div class="footer-section">
+                <h3>Síguenos</h3>
+                <a href="#facebook"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="#twitter"><i class="fab fa-twitter"></i> Twitter</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Cargar navbar
+        fetch("navbar.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("navbar-container").innerHTML = data;
+            });
+
+        function obtenerUbicacion() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    position => {
+                        const coords = position.coords;
+                        document.getElementById('coordenadas').value = 
+                            `${coords.latitude.toFixed(6)}, ${coords.longitude.toFixed(6)}`;
+                    },
+                    error => alert('Error obteniendo ubicación: ' + error.message)
+                );
+            } else {
+                alert('Geolocalización no soportada');
+            }
+        }
+
+        document.getElementById('solicitudPodaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Validación adicional aquí
+            this.submit();
+        });
+    </script>
+</body>
+</html>
