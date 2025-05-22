@@ -356,3 +356,248 @@ input:valid, select:valid, textarea:valid {
     color: #dc3545;
     margin-left: 3px;
 }
+
+/* ====================
+   ESTILOS PANEL OPERADOR
+   ==================== */
+
+.operador-container {
+    max-width: 1200px;
+    margin: 100px auto 2rem;
+    padding: 0 1.5rem;
+}
+
+/* Encabezado y filtros */
+.operador-header {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.filtros {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.filtro-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filtro-group label {
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.filtro-group select, 
+.filtro-group input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    background: #f8f9fa;
+}
+
+/* Grid de solicitudes */
+.solicitudes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.solicitud-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1.25rem;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+    border-left: 4px solid;
+}
+
+.solicitud-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Prioridades */
+.prioridad-alta { border-color: #ff4444; }
+.prioridad-media { border-color: #ffbb33; }
+.prioridad-baja { border-color: #00C851; }
+
+.solicitud-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.solicitud-id {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+}
+
+.solicitud-prioridad {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    background: #ff444411;
+    color: #ff4444;
+}
+
+.solicitud-body p {
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+}
+
+.solicitud-direccion {
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+/* Estados */
+.estado-pendiente { color: #f39c12; }
+.estado-aprobada { color: #27ae60; }
+.estado-rechazada { color: #c0392b; }
+
+/* Modal de detalle */
+.modal-operador {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+
+.modal-contenido {
+    background: #fff;
+    margin: 2rem auto;
+    padding: 2rem;
+    max-width: 800px;
+    border-radius: 12px;
+    position: relative;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.btn-cerrar {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+}
+
+.info-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.info-section h3 {
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.galeria-imagenes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.imagen-item img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* Acciones */
+.acciones-section {
+    margin-top: 2rem;
+}
+
+.acciones-group {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.btn-aprobar, .btn-rechazar {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+}
+
+.btn-aprobar {
+    background: #27ae60;
+    color: white;
+}
+
+.btn-rechazar {
+    background: #c0392b;
+    color: white;
+}
+
+.asignacion-section {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.btn-asignar {
+    background: #0074d9;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .modal-contenido {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .galeria-imagenes {
+        grid-template-columns: 1fr;
+    }
+    
+    .acciones-group {
+        flex-direction: column;
+    }
+    
+    .asignacion-section {
+        flex-wrap: wrap;
+    }
+}
+
+/* Utilidades */
+.mb-1 { margin-bottom: 1rem; }
+.mt-2 { margin-top: 2rem; }
+.p-2 { padding: 2rem; }
